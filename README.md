@@ -17,6 +17,7 @@ Downloaders Supported:
 - NZBGet
 - uTorrent
 - Deluge Daemon
+- Transmission (Currently for CouchPotato and Sonarr)
 
 Requirements
 --------------
@@ -47,6 +48,7 @@ Note: Windows users should enter commands in Powershell - using '<' doesn't work
 - `dateutil` - Run `pip install python-dateutil` (this will be automatically installed with subliminal)
 - `deluge-client` Run `pip install deluge-client` if you plan on using Deluge
 - `qtfaststart` Run `pip install qtfaststart` to enable moving moov atom
+- `transmission-daemon` Run `sudo apt-get install transmission-daemon` (only if planning on using Transmission for downloads)
 
 General MP4 Configuration
 --------------
@@ -302,6 +304,17 @@ Deluge Daemon
     - `username` - your Deluge username that you previously added to the `auth` file.
     - `password` - your Deluge password that you previously added to the `auth` file.
 7. Verify that whatever downloader you are using is assigning the label to match the label settings specified here so that file will be passed back to the appropriate location
+
+Transmission
+--------------
+1. Add `debian-transmission` to `pi` group by running `sudo usermod -a -G pi debian-transmission`
+2. Edit Transmission settings
+    - Run `sudo nano /etc/transmission-daemon/settings.json`
+    - Reload settings `sudo service transmission-daemon reload`. Restarting overwrites the configuration so always reload instead of restart.
+    - Edit `script-torrent-done-enabled` and `script-torrent-done-filename` to `true` and path to of `transmission-bash.sh`
+    - Configure Sonarr Transmission download client with category Sonarr
+    - Configure CouchPotato Transmission downloader with Directory to `path/to/downloads/CouchPotato/`
+    - In CouchPotato Renamer set From path to `path/to/downloads/CouchPotato/`
 
 Plex Notification
 --------------

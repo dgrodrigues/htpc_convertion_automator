@@ -112,6 +112,11 @@ couchpotato-label = couchpotato
 output_directory =
 remove = false
 
+[Transmission]
+remove = true
+output_directory = 
+convert = True
+
 [SABNZBD]
 convert = True
 sickrage-category = sickrage
